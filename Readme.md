@@ -20,13 +20,36 @@ CxxDBProxy:
   tc_epoll_server.cpp#1754
   int timeout = _listeners[fd]->getEndpoint().getTimeout()/1000;
 
-  2) 手动复制(或通过服务配置)CxxDBProxy工程下的dbproxy.ini文件到服务目标/usr/local/app/tars/tarsnode/data/CxxJava.DBProxyServer/bin目录下(dbproxy.ini的配置参见https://github.com/cxxjava/CxxDBC项目相关文档说明)，然后重启服务。
+  2) 手动复制(或通过服务配置)CxxDBProxy工程下的dbproxy.ini文件到服务目标/usr/local/app/tars/tarsnode/data/CxxJava.DBProxyServer/bin目录下(dbproxy.ini的配置参见https://github.com/cxxjava/CxxDBC项目相关文档说明)；
 
-  ​
+  3) 手动复制(或通过发布管理)CxxDBC的dblib插件到服务目标/usr/local/app/tars/tarsnode/data/CxxJava.DBProxyServer/bin目录下(插件安装具体参加https://github.com/cxxjava/CxxDBC/)，然后重启服务。
+
+  4) 最终/usr/local/app/tars/tarsnode/data/CxxJava.DBProxyServer/bin目录结构如：
+
+  ```
+  CxxJava.DBProxyServer/bin
+                       — DBProxyServer
+                       — dblib
+                            — linux
+                               — MSSQL.so
+                               — MYSQL.so
+                               — ORACLE.so
+                               — PGSQL.so
+                               — oracle
+                                    — libocci.so
+                                    — ...
+                            — osx
+                               -- ...
+                            — win
+                               -- ...
+                       — — dbproxy.ini
+                       — — tars_start.sh
+  ```
+
 
 3. 服务验证示例：
 
-  从https://www.github.com/cxxjava/CxxDBC/下载cxxdbc_apps_v0.2.0.tar.gz，解开后执行：
+  下载https://github.com/cxxjava/CxxDBC/archive/v0.2.0.zip，解开后执行：
 
   ![benchmark](img/benchmark.gif)
   ​
